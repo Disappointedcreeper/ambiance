@@ -1,0 +1,41 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#ND",
+        "VHL",
+        "SEW"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:tall_grass"
+        },
+        "N": {
+            "item": "minecraft:netherite_block"
+        },
+        "D": {
+            "item": "minecraft:dragon_egg"
+        },
+        "V": {
+            "item": "minecraft:deepslate_coal_ore"
+        },
+        "H": {
+            "item": "minecraft:heavy_core"
+        },
+        "L": {
+            "item": "minecraft:large_fern"
+        },
+        "S": {
+            "item": "minecraft:silence_armor_trim_smithing_template"
+        },
+        "E": {
+            "item": "minecraft:nether_star"
+        },
+        "W": {
+            "item": "minecraft:deepslate_emerald_ore"
+        }
+    },
+    "result": {
+        "id": "ambiance:test_item",
+        "count": 1
+    }
+}
