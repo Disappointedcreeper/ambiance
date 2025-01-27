@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "group": "boat",
+    "key": {
+      "a": "minecraft:magenta_glazed_terracotta",
+      "b": "minecraft:netherite_block"
+    },
+    "pattern": [
+      "ab",
+      "ba"
+    ],
+    "result": {
+      "count": 1,
+      "id": "ambiance:test_block"
+    }
+  }

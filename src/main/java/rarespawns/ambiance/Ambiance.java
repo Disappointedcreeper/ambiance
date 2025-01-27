@@ -15,8 +15,6 @@ public class Ambiance implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		AmbianceItems.initialize();
-
-		LOGGER.info("Hello Fabric world!");
+		AmbianceRegistry.initialize();
 	}
 }

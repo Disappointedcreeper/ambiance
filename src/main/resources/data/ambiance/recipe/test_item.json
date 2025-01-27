@@ -1,41 +1,25 @@
 {
     "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "#ND",
-        "VHL",
-        "SEW"
-    ],
+    "category": "misc",
+    "group": "boat",
     "key": {
-        "#": {
-            "item": "minecraft:tall_grass"
-        },
-        "N": {
-            "item": "minecraft:netherite_block"
-        },
-        "D": {
-            "item": "minecraft:dragon_egg"
-        },
-        "V": {
-            "item": "minecraft:deepslate_coal_ore"
-        },
-        "H": {
-            "item": "minecraft:heavy_core"
-        },
-        "L": {
-            "item": "minecraft:large_fern"
-        },
-        "S": {
-            "item": "minecraft:silence_armor_trim_smithing_template"
-        },
-        "E": {
-            "item": "minecraft:nether_star"
-        },
-        "W": {
-            "item": "minecraft:deepslate_emerald_ore"
-        }
+      "a": "minecraft:tall_grass",
+      "b": "minecraft:netherite_block",
+      "c": "minecraft:dragon_egg",
+      "d": "minecraft:deepslate_coal_ore",
+      "e": "minecraft:heavy_core",
+      "f": "minecraft:large_fern",
+      "g": "minecraft:silence_armor_trim_smithing_template",
+      "h": "minecraft:nether_star",
+      "i": "minecraft:deepslate_emerald_ore"
     },
+    "pattern": [
+      "abc",
+      "def",
+      "ghi"
+    ],
     "result": {
-        "id": "ambiance:test_item",
-        "count": 1
+      "count": 1,
+      "id": "ambiance:test_item"
     }
-}
+  }
