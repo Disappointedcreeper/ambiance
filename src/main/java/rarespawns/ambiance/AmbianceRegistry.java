@@ -5,6 +5,7 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.component.type.FoodComponent;
+import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -18,6 +19,18 @@ public class AmbianceRegistry
 {
     public static final Item TEST_ITEM = registerItem("test_item", (properties) -> new Item(properties.food(new FoodComponent.Builder().build())));
     public static final Pair<Block,BlockItem> TEST_BLOCK = registerBlockWithItem("test_block", Block::new);
+    public static final Pair<Block,BlockItem> MOSSY_OAK_PLANKS = registerBlockWithItem("mossy_oak_planks", Block::new);
+    public static final Pair<Block,BlockItem> MOSSY_OAK_STAIRS = registerBlockWithItem("mossy_oak_stairs", Block::new);
+    public static final Pair<Block,BlockItem> MOSSY_OAK_SLAB = registerBlockWithItem("mossy_oak_slab", Block::new);
+    public static final Pair<Block,BlockItem> MOSSY_OAK_FENCE = registerBlockWithItem("mossy_oak_fence", Block::new);
+    public static final BlockFamily MOSSY_OAK = new BlockFamily.Builder(AmbianceRegistry.MOSSY_OAK_PLANKS.getFirst())
+        .stairs(AmbianceRegistry.MOSSY_OAK_STAIRS.getFirst())
+		.slab(AmbianceRegistry.MOSSY_OAK_SLAB.getFirst())
+		.fence(AmbianceRegistry.MOSSY_OAK_FENCE.getFirst())
+		.build();
+    public static final Pair<Block,BlockItem> MOSSY_OAK_DOOR = registerBlockWithItem("mossy_oak_door", Block::new);
+    public static final Pair<Block,BlockItem> MOSSY_OAK_TRAPDOOR = registerBlockWithItem("mossy_oak_trapdoor", Block::new);
+    
 
     public static Item registerItem(String name) {
         return registerItem(name, Item::new);
