@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ambiance:block/mossy_oak_planks"
+  }
+}

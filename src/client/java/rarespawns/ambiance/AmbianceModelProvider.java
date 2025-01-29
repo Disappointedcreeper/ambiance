@@ -14,9 +14,9 @@ public class AmbianceModelProvider extends FabricModelProvider {
 	@Override
 	public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) 
 	{
-		blockStateModelGenerator.registerCubeAllModelTexturePool(AmbianceRegistry.MOSSY_OAK_PLANKS.getFirst());
+		blockStateModelGenerator.registerSimpleCubeAll(AmbianceRegistry.MOSSY_OAK_PLANKS.getFirst());
 		blockStateModelGenerator.registerDoor(AmbianceRegistry.MOSSY_OAK_DOOR.getFirst());
-		blockStateModelGenerator.registerTrapdoor(AmbianceRegistry.MOSSY_OAK_TRAPDOOR.getFirst());
+		blockStateModelGenerator.registerOrientableTrapdoor(AmbianceRegistry.MOSSY_OAK_TRAPDOOR.getFirst());
 	}
 
 

@@ -2,8 +2,19 @@ package rarespawns.ambiance;
 
 import com.mojang.datafixers.util.Pair;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSetType;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.FenceBlock;
+import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.SignBlock;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.block.TrapdoorBlock;
+import net.minecraft.block.WoodType;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.BlockItem;
@@ -17,19 +28,18 @@ import net.minecraft.util.Identifier;
 // shamelessly stealing this from here https://gist.github.com/Raik176/9187a4960869749a6d50456115eab6e1
 public class AmbianceRegistry
 {
+    public static final BlockSetType MOSSYOAK = BlockSetTypeBuilder.copyOf(BlockSetType.OAK).register(Identifier.of("ambiance", "mossy_oak"));
+    public static final WoodType MOSSYOAKWOODTYPE = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of("ambiance", "mossy_oak"), MOSSYOAK);
     public static final Item TEST_ITEM = registerItem("test_item", (properties) -> new Item(properties.food(new FoodComponent.Builder().build())));
     public static final Pair<Block,BlockItem> TEST_BLOCK = registerBlockWithItem("test_block", Block::new);
-    public static final Pair<Block,BlockItem> MOSSY_OAK_PLANKS = registerBlockWithItem("mossy_oak_planks", Block::new);
-    public static final Pair<Block,BlockItem> MOSSY_OAK_STAIRS = registerBlockWithItem("mossy_oak_stairs", Block::new);
-    public static final Pair<Block,BlockItem> MOSSY_OAK_SLAB = registerBlockWithItem("mossy_oak_slab", Block::new);
-    public static final Pair<Block,BlockItem> MOSSY_OAK_FENCE = registerBlockWithItem("mossy_oak_fence", Block::new);
-    public static final BlockFamily MOSSY_OAK = new BlockFamily.Builder(AmbianceRegistry.MOSSY_OAK_PLANKS.getFirst())
-        .stairs(AmbianceRegistry.MOSSY_OAK_STAIRS.getFirst())
-		.slab(AmbianceRegistry.MOSSY_OAK_SLAB.getFirst())
-		.fence(AmbianceRegistry.MOSSY_OAK_FENCE.getFirst())
-		.build();
-    public static final Pair<Block,BlockItem> MOSSY_OAK_DOOR = registerBlockWithItem("mossy_oak_door", Block::new);
-    public static final Pair<Block,BlockItem> MOSSY_OAK_TRAPDOOR = registerBlockWithItem("mossy_oak_trapdoor", Block::new);
+    public static final Pair<Block,BlockItem> MOSSY_OAK_PLANKS = registerBlockWithItem("mossy_oak_planks", properties -> new Block(properties));
+    public static final Pair<Block,BlockItem> MOSSY_OAK_STAIRS = registerBlockWithItem("mossy_oak_stairs", properties -> new StairsBlock(MOSSY_OAK_PLANKS.getFirst().getDefaultState(), properties));
+    public static final Pair<Block,BlockItem> MOSSY_OAK_SLAB = registerBlockWithItem("mossy_oak_slab", properties -> new SlabBlock(properties));
+    public static final Pair<Block,BlockItem> MOSSY_OAK_FENCE = registerBlockWithItem("mossy_oak_fence", properties -> new FenceBlock(properties));
+    public static final Pair<Block,BlockItem> MOSSY_OAK_DOOR = registerBlockWithItem("mossy_oak_door", properties -> new DoorBlock(MOSSYOAK, properties));
+    public static final Pair<Block,BlockItem> MOSSY_OAK_TRAPDOOR = registerBlockWithItem("mossy_oak_trapdoor", properties -> new TrapdoorBlock(MOSSYOAK, properties));
+    public static final Pair<Block,BlockItem> MOSSY_OAK_FENCE_GATE = registerBlockWithItem("mossy_oak_fence_gate", properties -> new FenceGateBlock(MOSSYOAKWOODTYPE, properties));
+    public static final Pair<Block,BlockItem> MOSSY_OAK_SIGN = registerBlockWithItem("mossy_oak_sign", properties -> new SignBlock(MOSSYOAKWOODTYPE, properties));
     
 
     public static Item registerItem(String name) {
@@ -93,6 +103,26 @@ public class AmbianceRegistry
 
     @FunctionalInterface
     public interface BlockFactory<T extends Block> {
+        T create(AbstractBlock.Settings settings);
+    }
+    @FunctionalInterface
+    public interface StairsBlockItemFactory<T extends StairsBlock, U extends BlockItem> {
+        T create(AbstractBlock.Settings settings);
+    }
+    @FunctionalInterface
+    public interface SlabBlockItemFactory<T extends SlabBlock, U extends BlockItem> {
+        T create(AbstractBlock.Settings settings);
+    }
+    @FunctionalInterface
+    public interface FenceBlockItemFactory<T extends FenceBlock, U extends BlockItem> {
+        T create(AbstractBlock.Settings settings);
+    }
+    @FunctionalInterface
+    public interface DoorBlockItemFactory<T extends DoorBlock, U extends BlockItem> {
+        T create(AbstractBlock.Settings settings);
+    }
+    @FunctionalInterface
+    public interface TrapdoorBlockItemFactory<T extends TrapdoorBlock, U extends BlockItem> {
         T create(AbstractBlock.Settings settings);
     }
 
